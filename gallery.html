@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane Official Posters</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <style>
+        /* Navbar Styling */
+        nav.nav-wrapper {
+            position: fixed; /* Changed from fixed to relative */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1; /* Lower z-index to let sidenav overlap */
+            background-color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 64px;
+        }
+
+        .brand-logo img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            margin-top: 12px;
+        }
+
+        .brand-logo:hover img {
+            transform: scale(1.1);
+            filter: brightness(0) invert(1);
+        }
+
+        nav a {
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+        /* Adjust body padding to avoid navbar overlap */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+            margin: 0;
+            padding-top: 64px;
+        }
+
+        /* Gallery Section Styling */
+        .gallery-section {
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.5s ease;
+        }
+
+        .modal-content img.zoomed {
+            transform: scale(1.2);
+        }
+
+        .modal {
+            background-color: #1c1c1c;
+            color: white;
+        }
+
+        footer {
+            background-color: #111;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            min-height: 100px;
+            margin-top: 40px;
+        }
+
+        /* Sidenav Styling */
+        .sidenav {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: white;
+            z-index: 1000; /* Higher z-index to overlap navbar */
+        }
+
+        /* Adjust the content to the right when sidenav opens */
+        body.sidenav-open {
+            padding-left: 250px; /* Shift the content to the right when sidenav opens */
+        }
+
+        /* Adjust sidenav button positioning */
+        .sidenav-trigger {
+            position: absolute;
+            top: 20%;
+            left: 20px;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="nav-wrapper black">
+        <div class="container">
+            <!-- Sidenav Trigger (Hamburger Menu) -->
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <!-- Riot Games Logo (Centered) -->
+            <a href="index.html" class="brand-logo">
+                <img src="https://logodownload.org/wp-content/uploads/2019/12/riot-games-logo.png" alt="Riot Games Logo">
+            </a>
+
+            <!-- Navbar Links (Visible on larger screens) -->
+            <ul class="right hide-on-med-and-down">
+                <li><a href="trailer.html">TRAILER</a></li>
+                <li><a href="character.html">Character</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidenav Structure (Appears when the hamburger icon is clicked) -->
+    <ul id="slide-out" class="sidenav">
+        <li><a href="trailer.html">TRAILER</a></li>
+        <li><a href="character.html">CHARACTER</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+
+    <!-- Gallery Section -->
+    <div class="container gallery-section">
+        <h2 class="section-title">Arcane Official Posters</h2>
+        <div class="gallery-grid">
+            <!-- Poster 1 -->
+            <div class="gallery-item" data-poster="img/poster1.jpg">
+                <img src="img/poster1.jpg" alt="Arcane Poster 1">
+            </div>
+            <!-- Poster 2 -->
+            <div class="gallery-item" data-poster="img/poster2.jpg">
+                <img src="img/poster2.jpg" alt="Arcane Poster 2">
+            </div>
+            <!-- Poster 3 -->
+            <div class="gallery-item" data-poster="img/poster3.jpg">
+                <img src="img/poster3.jpg" alt="Arcane Poster 3">
+            </div>
+            <!-- Add more posters as needed -->
+            <div class="gallery-item" data-poster="img/poster4.jpg">
+                <img src="img/poster4.jpg" alt="Arcane Poster 4">
+            </div>
+            <div class="gallery-item" data-poster="img/poster5.jpg">
+                <img src="img/poster5.jpg" alt="Arcane Poster 5">
+            </div>
+            <div class="gallery-item" data-poster="img/poster6.jpg">
+                <img src="img/poster6.jpg" alt="Arcane Poster 6">
+            </div>
+            <div class="gallery-item" data-poster="img/poster7.jpg">
+                <img src="img/poster7.jpg" alt="Arcane Poster 7">
+            </div>
+            <div class="gallery-item" data-poster="img/poster8.jpg">
+                <img src="img/poster8.jpg" alt="Arcane Poster 8">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="posterModal" class="modal">
+        <div class="modal-content">
+            <img src="" alt="Selected Poster">
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Riot Games. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        // Initialize Materialize components (Sidenav & Modal)
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidenav = document.querySelectorAll('.sidenav');
+            const modal = document.querySelectorAll('.modal');
+            M.Sidenav.init(sidenav);
+            M.Modal.init(modal);
+
+            // When the sidenav opens, add class to body to push content
+            const sidenavInstances = M.Sidenav.init(sidenav);
+            sidenavInstances[0].instance.options.onOpenStart = () => {
+                document.body.classList.add('sidenav-open');
+            };
+            sidenavInstances[0].instance.options.onCloseStart = () => {
+                document.body.classList.remove('sidenav-open');
+            };
+        });
+
+        // Open Modal and Zoom Image on Click
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const modalImage = document.querySelector('#posterModal .modal-content img');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const posterSrc = item.getAttribute('data-poster');
+                modalImage.src = posterSrc;
+
+                const modalInstance = M.Modal.getInstance(document.querySelector('#posterModal'));
+                modalInstance.open();
+
+                // Smooth zoom animation
+                modalImage.classList.remove('zoomed');
+                setTimeout(() => modalImage.classList.add('zoomed'), 100);
+            });
+        });
+    </script>
+</body>
+
+</html>

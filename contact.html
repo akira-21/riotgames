@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <style>
+        /* Navbar Styling */
+        nav.nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10; /* Lower z-index so sidenav can overlap */
+            background-color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 64px;
+        }
+
+        .brand-logo img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            margin-top: 12px;
+        }
+
+        .brand-logo:hover img {
+            transform: scale(1.1);
+            filter: brightness(0) invert(1);
+        }
+
+        nav a {
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+        /* Adjust body padding to avoid navbar overlap */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+            margin: 0;
+            padding-top: 64px; /* Padding equal to the navbar height */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #111;
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Sidenav Styling */
+        .sidenav {
+            width: 250px;
+            z-index: 9999; /* Ensure sidenav overlaps the navbar */
+            position: fixed; /* Make sure it stays fixed on the screen */
+            top: 0;
+        }
+
+        body.sidenav-open {
+            padding-left: 250px;
+        }
+
+        /* Contact Methods Section */
+        .contact-methods {
+            display: flex;
+            justify-content: space-evenly;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .contact-methods .method {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+            color: #333;
+        }
+
+        .contact-methods .method a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #f44336;
+        }
+
+        .contact-methods .method a:hover {
+            color: #111;
+        }
+
+        .contact-methods .method i {
+            font-size: 50px;
+            color: #f44336; /* Red for contact icons */
+            margin-bottom: 10px;
+        }
+
+        /* Contact Form Section */
+        .contact-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .contact-form h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #111;
+        }
+
+        .form-input input, .form-input textarea {
+            color: #111;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+
+        .form-input label {
+            color: #111;
+        }
+
+        .form-input input:focus,
+        .form-input textarea:focus {
+            border-color: #f44336;
+        }
+
+        .form-input textarea {
+            min-height: 150px;
+        }
+
+        /* Social Media Links Styling */
+        .social-links {
+            text-align: center;
+            margin-top: 50px;
+            background-color: #1c1c1c;
+            padding: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            font-size: 50px;
+            color: white;
+            margin: 0 20px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #f44336; /* Red color on hover */
+        }
+
+        .persuasive-text {
+            text-align: center;
+            margin: 50px 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        /* Add margin below navbar */
+        .contact-methods, .contact-form, .social-links {
+            margin-top: 80px;
+        }
+
+        .contact-methods .method {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        /* Remove dark overlay when sidenav is open */
+        body .sidenav-overlay {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="nav-wrapper black">
+        <div class="container">
+            <!-- Sidenav Trigger (Hamburger Menu) -->
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+
+            <!-- Riot Games Logo (Centered) -->
+            <a href="index.html" class="brand-logo">
+                <img src="https://logodownload.org/wp-content/uploads/2019/12/riot-games-logo.png" alt="Riot Games Logo">
+            </a>
+
+            <!-- Navbar Links (Visible on larger screens) -->
+            <ul class="right hide-on-med-and-down">
+                <li><a href="trailer.html">TRAILER</a></li>
+                <li><a href="character.html">CHARACTER</a></li>
+                <li><a href="gallery.html">GALLERY</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidenav Structure -->
+    <ul id="slide-out" class="sidenav">
+        <li><a href="trailer.html">TRAILER</a></li>
+        <li><a href="character.html">Character</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <!-- Contact Page Content -->
+    <div class="container">
+        <!-- Persuasive Text -->
+        <div class="persuasive-text">
+            <p>Contact us for more content and exclusive updates on your favorite Arcane universe! Don't miss out on the latest news, characters, and exciting behind-the-scenes content!</p>
+        </div>
+
+        <!-- Contact Methods Section -->
+        <div class="contact-methods">
+            <!-- Email -->
+            <div class="method">
+                <i class="material-icons">email</i>
+                <h4>Email</h4>
+                <p>Get in touch via email</p>
+                <a href="mailto:support@example.com">Email Us</a>
+            </div>
+
+            <!-- Phone -->
+            <div class="method">
+                <i class="material-icons">phone</i>
+                <h4>Phone</h4>
+                <p>Call us directly</p>
+                <a href="tel:+123456789">Call Us</a>
+            </div>
+
+            <!-- Address -->
+            <div class="method">
+                <i class="material-icons">location_on</i>
+                <h4>Our Address</h4>
+                <p>Visit us at our location</p>
+                <a href="https://www.google.com/maps" target="_blank">Find Us</a>
+            </div>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form action="#" method="POST">
+                <div class="form-input">
+                    <input type="text" id="name" name="name" class="validate" required>
+                    <label for="name">Your Name</label>
+                </div>
+                <div class="form-input">
+                    <input type="email" id="email" name="email" class="validate" required>
+                    <label for="email">Your Email</label>
+                </div>
+                <div class="form-input">
+                    <textarea id="message" name="message" class="materialize-textarea" required></textarea>
+                    <label for="message">Your Message</label>
+                </div>
+                <button type="submit" class="btn red">Send Message</button>
+            </form>
+        </div>
+
+        <!-- New Social Media Links Section -->
+        <div class="social-links">
+            <h4>Follow Us</h4>
+            <a href="https://facebook.com" target="_blank"><i class="material-icons">facebook</i></a>
+            <a href="https://pinterest.com" target="_blank"><i class="material-icons">pin_drop</i></a>
+            <a href="https://youtube.com" target="_blank"><i class="material-icons">videocam</i></a>
+            <a href="https://github.com" target="_blank"><i class="material-icons">code</i></a>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Riot Games. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidenav = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(sidenav, {
+                edge: 'left',      // Specifies the side the sidenav will slide in from
+                inDuration: 250,   // Speed of the transition
+                outDuration: 200,  // Speed of the transition when closing
+                overlay: true      // Keep this as true, it won't affect the display with custom CSS
+            });
+        });
+    </script>
+</body>
+
+</html>

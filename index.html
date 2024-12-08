@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/materialize.min.css"> <!-- Ensure "css/materialize.min.css" exists -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <title>Arcane</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon"> <!-- Ensure "img/favicon.ico" exists -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .social-icons a {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+    }
+
+    .social-icons a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+     /* Navbar Styles */
+     .nav-wrapper {
+            position: fixed; /* Fix the navbar to the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure the navbar is above other elements */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 140%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        /* Centered Logo */
+        .logo-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .logo-container img {
+            max-width: 85%;
+            height: auto;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .start-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 20px 50px;
+    background-color: transparent;
+    color: #ff0000; /* Neon blue text color */
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 2px solid #ff0000; /* Neon blue border */
+    border-radius: 50px; /* Smooth rounded corners */
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.start-button:hover {
+    background: #ff0000; /* Neon blue background on hover */
+    color: #fff7f7; /* Dark text color on hover */
+    border-color: #ff0000; /* Slightly lighter blue border */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6); /* Neon glow effect */
+    transform: translateY(-5px); /* Slight lift effect */
+}
+
+.start-button:focus {
+    outline: none;
+}
+
+
+        /* Highlight Section: Below the video */
+        .highlight-container {
+            position: relative;
+            background: rgba(255, 0, 0, 0.85); /* Semi-transparent dark blue background */
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px;
+            z-index: 10; /* Ensure it's above other elements */
+            backdrop-filter: blur(10px); /* Apply blur effect */
+        }
+
+        .highlight-container h2 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .highlight-container p {
+            font-size: 1.5rem;
+            line-height: 2;
+            max-width: 800px;
+        }
+        
+        footer {
+            background-color: #111;
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+        }
+
+        /* Navbar and other sections */
+        header {
+            position: relative;
+            min-height: 800px;
+        }
+
+        .brand-logo img {
+            height: 40px;
+            width: auto;
+            position: relative;
+            margin-top: 12px;
+        }
+        /* Riot Games Logo Hover Effect */
+        .riot-logo img {
+        transition: all 0.3s ease-in-out;
+}
+
+        .riot-logo:hover img {
+        filter: brightness(1.5); /* Brighten the image */
+        transform: scale(1.1);  /* Slightly enlarge */
+        box-shadow: 0 0 15px 5px white(255, 0, 0, 0.8); /* Glowing effect */
+}
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .video-background {
+                height: 100vh; /* Reduce the video size on smaller screens */
+            }
+
+            .highlight-container h2 {
+                font-size: 2rem;
+            }
+
+            .highlight-container p {
+                font-size: 1rem;
+            }
+
+            .start-button {
+                font-size: 1.2rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="video/bgvideo.mp4" type="video/mp4"> <!-- Ensure "video/bgvideo.mp4" exists -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="nav-wrapper black">
+            <div class="container">
+                <a href="index.html" class="brand-logo riot-logo">
+                    <img src="img/riotlogo.png" alt="Riot Games Logo"> <!-- Ensure "img/riotlogo.png" exists -->
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#about" class="scroll-link">About</a></li>
+                    <li>
+                        <a href="#" class="tooltipped btn-floating green darken-2" data-tooltip="This is Spotify">
+                            <i class="fab fa-spotify"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltipped btn-floating red darken-4" data-tooltip="This is Pinterest">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="tooltipped btn-floating blue darken-4" data-tooltip="This is Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="logo-container">
+            <img src="img/arcanelogo.jpg" alt="Arcane Logo"> <!-- Ensure "img/arcanelogo.jpg" exists -->
+            <button class="start-button" onclick="window.location.href='trailer.html';">Start</button>
+        </div>
+    </header>
+
+    <!-- Highlighted About Section -->
+    <div class="highlight-container" id="about">
+        <h2>About</h2>
+        <p>
+            Based on the world behind League of Legends, Arcane dives into the delicate balance between the rich, utopian city of Piltover and the seedy, oppressed underground of Zaun. Known across Runeterra as the "city of progress," many of the most brilliant minds call these cities home. But the creation of hextech, a way for any person to control magical energy, threatens that balance. The story follows the origins of two iconic League champions—and the power that will tear them apart.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Riot Games. All rights reserved.</p>
+    </footer>
+
+    <script src="js/jquery.js"></script> <!-- Ensure "js/jquery.js" exists -->
+    <script src="js/materialize.min.js"></script> <!-- Ensure "js/materialize.min.js" exists -->
+    <script>
+        $(document).ready(function () {
+            $('.tooltipped').tooltip();
+            $('.scroll-link').on('click', function (e) {
+                e.preventDefault();
+                const target = $($(this).attr('href'));
+                if (target.length) {
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 800);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

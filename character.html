@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane Characters</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <style>
+        /* Navbar styles */
+nav.nav-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999; /* Lower z-index for navbar */
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 64px;
+}
+
+.body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #1c1c1c;
+    color: #fff;
+    padding-top: 64px;  /* Adjust padding so content does not overlap navbar */
+}
+
+/* Mobile adjustments */
+@media only screen and (max-width: 600px) {
+    nav.nav-wrapper {
+        flex-direction: column;
+        padding: 10px 20px;
+        height: auto;
+    }
+
+    .brand-logo img {
+        height: 30px;
+        margin-top: 10px;
+    }
+
+    /* Mobile sidenav styles */
+    .sidenav {
+        width: 300px;
+        z-index: 1000; /* Ensure sidenav stays above the navbar */
+    }
+
+    .sidenav li a {
+        font-size: 18px;
+    }
+}
+
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 200px;
+        }
+
+        .brand-logo img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            margin-top: 12px;
+        }
+
+        .brand-logo:hover img {
+            transform: scale(1.1);
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-wrapper ul {
+            margin-left: auto;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+            padding-top: 86px;
+        }
+
+        .container {
+            margin-top: 3px;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* Space between Vi and Jinx */
+            flex-wrap: wrap;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            width: 300px; /* Adjust the width of the cards */
+            height: 450px;
+            perspective: 1000px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .flip-card-back {
+            background-color: #111;
+            color: white;
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 20px;
+            background-image: url('img/sample-background.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        /* Icon-sized image styling (only for characters other than Vi and Jinx) */
+        .icon-size-img {
+            width: 100%;  /* Icon size width */
+            height: 70%; /* Icon size height */
+            object-fit: cover;
+        }
+
+        .card-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .card-info p {
+            font-size: 16px;
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        /* Name is only visible on the front */
+        .card-name {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        /* Ensure name is hidden on the back of the card */
+        .flip-card-back .card-name {
+            display: none;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+            border-top: 2px solid #333;
+            font-size: 14px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        footer a {
+            color: #ff6347;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #ff4500;
+        }
+
+        nav a {
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="nav-wrapper black">
+            <div class="container">
+                <a href="index.html" class="brand-logo riot-games-logo">
+                    <img src="https://logodownload.org/wp-content/uploads/2019/12/riot-games-logo.png" alt="Riot Games Logo">
+                </a>
+                <!-- Mobile sidenav button -->
+                <a href="#" data-target="mobile-sidenav" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="trailer.html">TRAILER</a></li>
+                    <li><a href="character.html">CHARACTER</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Mobile Sidenav -->
+<ul id="mobile-sidenav" class="sidenav">
+    <li><a href="trailer.html">TRAILER</a></li>
+    <li><a href="character.html">CHARACTER</a></li>
+    <li><a href="gallery.html">GALLERY</a></li>
+    <li><a href="contact.html">CONTACT</a></li>
+
+</ul>
+
+    <!-- Characters Section -->
+    <div class="container">
+        <h2>Meet the Characters</h2>
+
+        <!-- Vi and Jinx centered horizontally -->
+        <div class="card-container">
+            <!-- Vi Card -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Vi</div>
+                        <img src="img/vi.jpg" alt="Character 1">
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/hailee.jpg" alt="Voice Actor 1" class="icon-size-img">
+                        <div class="card-info">
+                            <p>Voice Actor: Hailee Steinfeld</p>
+                            <p>Vi is a skilled fighter and protector of Piltover.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jinx Card -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Jinx</div>
+                        <img src="img/jinx.jpg" alt="Character 2">
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/ella.jpg" alt="Voice Actor 2" class="icon-size-img">
+                        <div class="card-info">
+                            <p>Voice Actor: Ella Purnell</p>
+                            <p>Jinx is a chaotic and unpredictable character.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <!-- Jayce Card -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Jayce</div>
+                        <img src="img/jayce.jpg" alt="Character 4" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/kevin.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Kevin Alejandro</p>
+                            <p>Jayce is a brilliant inventor and a skilled fighter.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mel Card -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Mel</div>
+                        <img src="img/mel.jpg" alt="Character 5" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/toka.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Toks Olagundoye</p>
+                            <p>Mel is a powerful and strategic character in the series.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ekko Card -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Ekko</div>
+                        <img src="img/ekko.jpg" alt="Character 3" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/reed.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Reed Shannon</p>
+                            <p>Ekko is a brilliant inventor and a skilled fighter.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vander Card -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Vander</div>
+                        <img src="img/vander.jpg" alt="Character 5" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/jb.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Jb Blanc</p>
+                            <p> A protective father figure to Vi and Jinx, striving to shield Zaun from conflict.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Silco</div>
+                        <img src="img/Silco.jpg" alt="Character 5" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/jayson.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Jason Spisak</p>
+                            <p>A cunning crime lord and Jinx’s manipulative mentor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Caitlyn</div>
+                        <img src="img/cait.jpg" alt="Character 5" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/katie.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Katie Leung</p>
+                            <p>A principled enforcer from Piltover who partners with Vi to uphold justice.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Heimerdinger</div>
+                        <img src="img/heimer.jpg" alt="Character 5" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/mick.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Mick Wingert</p>
+                            <p> A wise Yordle scientist preserving Piltover’s safety.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Viktor</div>
+                        <img src="img/viktor.jpg" alt="Character 5" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/harry.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Harry Lloyd</p>
+                            <p>A visionary scientist from Zaun, willing to push boundaries to advance technology.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card-name">Ambessa</div>
+                        <img src="img/ambessa.jpg" alt="Character 5" class="icon-size-img"> <!-- Adjusted icon size for front image -->
+                    </div>
+                    <div class="flip-card-back">
+                        <img src="img/ellen.jpg" alt="Voice Actor 1" class="icon-size-img"> <!-- Original size for voice actor image -->
+                        <div class="card-info">
+                            <p>Voice Actor: Ellen Thomas</p>
+                            <p>Mel’s ruthless mother, driven by power and ambition..</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Riot Games. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize sidenav
+            $('.sidenav').sidenav();
+        });
+    </script>
+
+</body>
+</html>

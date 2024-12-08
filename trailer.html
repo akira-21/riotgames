@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane Trailer</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <style>
+        /* Navbar styles */
+        nav.nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999; /* Lower z-index for navbar */
+            background-color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            height: 64px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            margin-top: 12px;
+        }
+
+        .brand-logo:hover img {
+            transform: scale(1.1);
+            filter: brightness(0) invert(1);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1c1c1c;
+            color: #fff;
+            padding-top: 64px;  /* Adjust padding so content does not overlap navbar */
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slide {
+            display: none;
+            text-align: center;
+        }
+
+        .slide iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.5);
+            transform: translateY(-50%);
+            user-select: none;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+
+        footer {
+            background-color: #111;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: red;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        .trailer-description {
+            margin-top: 15px;
+            color: lightgray;
+            font-size: 16px;
+            text-align: center;
+            line-height: 1.6;
+            font-weight: bold;
+        }
+
+        /* Mobile adjustments */
+        @media only screen and (max-width: 600px) {
+            nav.nav-wrapper {
+                flex-direction: column;
+                padding: 10px 20px;
+                height: auto;
+            }
+
+            .brand-logo img {
+                height: 30px;
+                margin-top: 10px;
+            }
+
+            .slideshow-container {
+                margin-top: 20px;
+            }
+
+            .trailer-description {
+                font-size: 14px;
+                margin: 10px;
+            }
+
+            .prev, .next {
+                font-size: 20px;
+            }
+
+            /* Mobile sidenav styles */
+            .sidenav {
+                width: 250px;
+                z-index: 1000; /* Ensure sidenav stays above the navbar */
+            }
+
+            .sidenav li a {
+                font-size: 18px;
+            }
+            .sidenav-trigger {
+                position: absolute;
+                left: 20px;  /* Adjust this to control the button's left position */
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav class="nav-wrapper black">
+            <div class="container">
+                <a href="index.html" class="brand-logo riot-games-logo">
+                    <img src="https://logodownload.org/wp-content/uploads/2019/12/riot-games-logo.png" alt="Riot Games Logo">
+                </a>
+                <!-- Mobile sidenav button -->
+                <a href="#" data-target="mobile-sidenav" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="trailer.html">TRAILER</a></li>
+                    <li><a href="character.html">CHARACTER</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Sidenav -->
+    <ul id="mobile-sidenav" class="sidenav">
+        <li><a href="trailer.html">TRAILER</a></li>
+        <li><a href="character.html">CHARACTER</a></li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+
+    <!-- Trailer Section -->
+    <div class="container">
+        <h2>Arcane Official Trailers</h2>
+        <p style="font-size: 1.2rem; color: #ddd; text-align: center; margin: 10px 0;">
+            Dive into the epic world of Arcane, where action-packed moments, gripping storylines, and captivating visuals bring Runeterra to life. The trailers showcase the intense emotions and battles of beloved characters like Vi and Jinx.
+        </p>
+        <div class="slideshow-container">
+            <div class="slide active">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/4Ps6nV4wiCE?si=rfOjS2fnMrNyIE6b" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/hsffPST-x1k?si=nZmI6RrZO7TAbZs8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/W4gLFBNGgiY?si=u4fS5THwXk0oJtMQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/pgYeDYZMrPM?si=VbPmM8qb6UPtgEih" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/32oT-CWJOC0?si=1izzINxA3v8koBzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Riot Games. All rights reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize sidenav
+            $('.sidenav').sidenav();
+    
+            const slides = $(".slide");
+            let currentIndex = 0;
+    
+            // Function to pause all videos
+            function pauseAllVideos() {
+                $("iframe").each(function () {
+                    const src = $(this).attr("src");
+                    $(this).attr("src", "").attr("src", src);  // Reload the iframe to stop the video
+                });
+            }
+    
+            // Function to show a specific slide
+            function showSlide(index) {
+                slides.removeClass("active").hide();
+                $(slides[index]).addClass("active").fadeIn();
+    
+                // Pause all videos
+                pauseAllVideos();
+            }
+    
+            // Initially show the first slide
+            showSlide(currentIndex);
+    
+            // Next button functionality    
+            $(".next").click(function () {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            });
+    
+            // Previous button functionality
+            $(".prev").click(function () {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            });
+        });
+    </script>
+</body>
+</html>
